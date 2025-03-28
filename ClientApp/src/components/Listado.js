@@ -2,8 +2,24 @@
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import Swal from 'sweetalert2';
 import { deleteReserva } from '../services/reservaService';
+import PropTypes from 'prop-types';
 
 const Listado = ({ reservas, onReservaEliminada }) => {
+
+    Listado.propTypes = {
+        reservas: PropTypes.arrayOf(
+            PropTypes.shape({
+                id: PropTypes.number.isRequired,
+                cliente: PropTypes.string.isRequired,
+                servicio: PropTypes.string.isRequired,
+                fecha: PropTypes.oneOfType([
+                    PropTypes.instanceOf(Date) 
+                ]).isRequired,
+                hora: PropTypes.string.isRequired,
+            })
+        ).isRequired,
+        onReservaEliminada: PropTypes.func.isRequired,
+    };
 
     const eliminarReserva = async (reserva) => {
         Swal.fire({

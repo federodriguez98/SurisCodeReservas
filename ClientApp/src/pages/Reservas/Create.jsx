@@ -6,7 +6,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
-import { EnumViews } from '../../config/config_Views';
+import { Config_Views } from '../../config/config_Views';
 
 
 const Create = () => {
@@ -56,7 +56,7 @@ const Create = () => {
                 icon: 'success',
                 title: 'Se reservo el turno correctamente',
             });
-            navigate(EnumViews.Listado);
+            navigate(Config_Views.Listado);
 
         } catch (error) {
             Swal.fire({
@@ -70,7 +70,7 @@ const Create = () => {
         <div>
             <button
                 className="btn btn-primary mx-4"
-                onClick={() => navigate(EnumViews.Listado)}
+                onClick={() => navigate(Config_Views.Listado)}
         >
             Volver al listado
         </button>

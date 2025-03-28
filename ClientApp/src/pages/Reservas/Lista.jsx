@@ -2,7 +2,7 @@
 import { getReservas } from '../../services/reservaService';
 import Listado from '../../components/Listado'; 
 import { useNavigate } from 'react-router-dom';
-import { EnumViews } from '../../config/config_Views';
+import { Config_Views } from '../../config/config_Views';
 
 
 const Lista = () => {
@@ -10,7 +10,7 @@ const Lista = () => {
     const navigate = useNavigate();
 
     const irACrear = () => {
-        navigate(EnumViews.Crear);
+        navigate(Config_Views.Crear);
     };
 
     const obtenerReservas = async () => {

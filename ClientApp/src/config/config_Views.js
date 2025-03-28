@@ -1,4 +1,4 @@
-﻿export const EnumViews = {
-    Listado: '/',
-    Crear: '/reservas/nueva',
+﻿export const Config_Views = {
+    Listado: '/reserva/listado',
+    Crear: '/reserva/nueva',
 };

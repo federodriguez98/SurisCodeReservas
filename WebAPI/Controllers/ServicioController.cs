@@ -18,8 +18,14 @@ namespace GestionDeReservas.WebAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<List<ServicioDTO>>> GetReservas()
         {
-            var servicios = await _mediator.Send(new GetServicioQuery());
-            return Ok(servicios);
+            try
+            {
+                var servicios = await _mediator.Send(new GetServicioQuery());
+                return Ok(servicios);
+            }catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

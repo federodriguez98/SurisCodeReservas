@@ -31,5 +31,16 @@ namespace GestionDeReservas.Infrastructure.Persistence
             _context.ReservaHorario.Add(reservaHorario);
             return await _context.SaveChangesAsync();
         }
+
+        public async Task EliminarReservaHorario(int id)
+        {
+            var reservaHorario = await _context.ReservaHorario.FirstOrDefaultAsync(r => r.IdReserva == id);
+
+            if (reservaHorario != null)
+            {
+                _context.ReservaHorario.Remove(reservaHorario);
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }

@@ -2,7 +2,7 @@
 import { getReservas } from '../../services/reservaService';
 import Listado from '../../components/Listado'; 
 import { useNavigate } from 'react-router-dom';
-import { EnumViews } from '../../config/Enums/enumViews';
+import { EnumViews } from '../../config/config_Views';
 
 
 const Lista = () => {
@@ -12,12 +12,14 @@ const Lista = () => {
     const irACrear = () => {
         navigate(EnumViews.Crear);
     };
+
+    const obtenerReservas = async () => {
+        const response = await getReservas();
+        setReservas(response.data);
+    };
+
     useEffect(() => {
-        const fetchData = async () => {
-            const response = await getReservas();
-            setReservas(response.data);
-        };
-        fetchData();
+        obtenerReservas();
     }, []);
 
     return (
@@ -31,7 +33,7 @@ const Lista = () => {
                     Nueva reserva
                 </button>
             </div>
-            <Listado reservas={ reservas } />
+            <Listado reservas={reservas} onReservaEliminada={obtenerReservas} />
         </div>
     );
 };

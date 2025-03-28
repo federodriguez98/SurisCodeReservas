@@ -9,5 +9,6 @@ namespace GestionDeReservas.Application.Features.Interfaces
         Task<int> AddReservaHorario(Domain.ReservaHorario reservahorario);
         Task<Domain.ReservaHorario> ValidacionClienteFecha(GetReservaHorarioQuery request);
         Task<Domain.ReservaHorario> ValidacionFechaHoraServicio(GetReservaHorarioServicioQuery request);
+        Task EliminarReservaHorario(int id);
     }
 }

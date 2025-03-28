@@ -6,7 +6,7 @@ import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
-import { EnumViews } from '../../config/Enums/enumViews';
+import { EnumViews } from '../../config/config_Views';
 
 
 const Create = () => {
@@ -67,6 +67,13 @@ const Create = () => {
     };
 
     return (
+        <div>
+            <button
+                className="btn btn-primary mx-4"
+                onClick={() => navigate(EnumViews.Listado)}
+        >
+            Volver al listado
+        </button>
         <div className="d-flex justify-content-center align-items-center min-vh-100">
             <div className="card" style={{ width: '40rem' }}>
                 <div className="card-body">
@@ -145,7 +152,7 @@ const Create = () => {
                 </div>
             </div>
         </div>
-
+    </div>
 
     );
 };

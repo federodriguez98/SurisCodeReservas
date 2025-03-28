@@ -27,7 +27,7 @@ namespace GestionDeReservas.WebAPI.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(500, "Error interno al obtener reservas");
+                return BadRequest(ex.Message);
             }
         }
 
@@ -79,6 +79,23 @@ namespace GestionDeReservas.WebAPI.Controllers
                 }
                 return Ok();
             }catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> EliminarReserva(int id)
+        {
+            try
+            {
+                var deleteReservaHorario = new DeleteReservaHorarioCommand { Id = id };
+                await _mediator.Send(deleteReservaHorario);
+                var deleteReserva = new DeleteReservaCommand { Id = id };
+                await _mediator.Send(deleteReserva);
+                return Ok();
+            }
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }

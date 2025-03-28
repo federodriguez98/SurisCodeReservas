@@ -1,4 +1,48 @@
-﻿const Listado = ({ reservas }) => {
+﻿import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import Swal from 'sweetalert2';
+import { deleteReserva } from '../services/reservaService';
+
+const Listado = ({ reservas, onReservaEliminada }) => {
+
+    const eliminarReserva = async (reserva) => {
+        Swal.fire({
+            icon: 'warning',
+            title: '¿Deseas eliminar la reserva a nombre de ' + reserva.cliente + ' para el servicio ' + reserva.servicio + ' el día ' + new Date(reserva.fecha).toLocaleDateString() + ' a las ' + reserva.hora.slice(0, 5) + '?',
+            showCancelButton: true,
+            confirmButtonText: 'Confirmar',
+            cancelButtonText: 'Cancelar', 
+            confirmButtonColor: '#3085d6', 
+            cancelButtonColor: '#d33',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                
+                deleteReserva(reserva.id)
+                    .then(() => {
+                        Swal.fire(
+                            '¡Eliminada!',
+                            'La reserva ha sido eliminada.',
+                            'success' 
+                        );        
+                        onReservaEliminada();
+                    })
+                    .catch((error) => {
+                        Swal.fire(
+                            'Error',
+                            'No se pudo eliminar la reserva: ',
+                            'error'
+                        );
+                    });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire(
+                    'Cancelado',
+                    'La reserva no ha sido eliminada.',
+                    'info'
+                );
+            }
+        });
+    }
+
     return (
         <table className="table table-striped table-hover table-bordered">
             <thead className="table-dark">
@@ -7,6 +51,7 @@
                     <th>Servicio</th>
                     <th>Fecha</th>
                     <th>Hora</th>
+                    <th>Acción</th>
                 </tr>
             </thead>
             <tbody>
@@ -19,14 +64,19 @@
                         <td>{reserva.cliente}</td>
                         <td>{reserva.servicio}</td>
                         <td>
-                                <span >
-                                    {new Date(reserva.fecha).toLocaleDateString()}
-                                </span>
+                           <span >
+                              {new Date(reserva.fecha).toLocaleDateString()}
+                           </span>
                         </td>
                         <td>
-                                <span >
-                                {reserva.hora.slice(0,5)}
-                                </span>
+                           <span >
+                              {reserva.hora.slice(0,5)}
+                           </span>
+                        </td>
+                        <td className="text-center">
+                            <span onClick={() => eliminarReserva(reserva)} style={{ cursor: 'pointer', color: 'red' }}>
+                                <FontAwesomeIcon icon={faTrashAlt} />
+                            </span>
                         </td>
                     </tr>
                 )))}

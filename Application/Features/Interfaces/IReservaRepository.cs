@@ -7,5 +7,6 @@ namespace GestionDeReservas.Application.Features.Interfaces
     {
         Task<List<ReservaDTO>> GetAll();
         Task<int> AddReserva(Reserva reserva);
+        Task EliminarReserva(int idReserva);
     }
 }

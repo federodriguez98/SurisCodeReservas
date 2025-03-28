@@ -25,6 +25,17 @@ namespace GestionDeReservas.Infrastructure.Persistence
                 .FirstOrDefaultAsync();
         }
 
+        public async Task EliminarReserva(int id)
+        {
+            var reserva = await _context.Reserva.FirstOrDefaultAsync(r => r.Id == id);
+
+            if (reserva != null)
+            {
+                _context.Reserva.Remove(reserva);
+                await _context.SaveChangesAsync();
+            }
+        }
+
         public async Task<List<ReservaDTO>> GetAll()
         {
             return await _context.Reserva

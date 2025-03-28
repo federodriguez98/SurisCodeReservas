@@ -36,7 +36,7 @@ namespace GestionDeReservas.WebAPI.Controllers
         {
             try
             {
-                //Valido que este cliente no tenga otra reserva para esta fecha
+                //Valido que este cliente no tenga otra reserva para esta fecha.
                 var validacionClienteFecha = new GetReservaHorarioQuery
                 {
                     Cliente = reservas.Cliente,
@@ -48,7 +48,7 @@ namespace GestionDeReservas.WebAPI.Controllers
                     return BadRequest("Este cliente ya tiene una reserva para este mismo día");
                 }
 
-                //Valido que no exista una reserva para este servicio en el mismo día y horario
+                //Valido que no exista una reserva para este servicio en el mismo día y horario.
                 var validacionHorarioDisponible = new GetReservaHorarioServicioQuery
                 {
                     IdServicio = reservas.IdServicio,

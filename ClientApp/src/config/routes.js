@@ -1,5 +1,5 @@
 ﻿import { lazy } from 'react';
-import { EnumViews } from './enumViews';
+import { EnumViews } from './Enums/enumViews';
 
 const routes = [
     {

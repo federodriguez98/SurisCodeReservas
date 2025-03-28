@@ -2,7 +2,7 @@
 import { getReservas } from '../../services/reservaService';
 import Listado from '../../components/Listado'; 
 import { useNavigate } from 'react-router-dom';
-import { EnumViews } from '../../config/enumViews';
+import { EnumViews } from '../../config/Enums/enumViews';
 
 
 const Lista = () => {

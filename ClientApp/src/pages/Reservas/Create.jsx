@@ -32,7 +32,6 @@ const Create = () => {
             if (servicioSeleccionado && fechaSeleccionada) {
                 const fechaNormalizada = fechaSeleccionada.toISOString().split('T')[0];
                 const response = await getHorarios(servicioSeleccionado, fechaNormalizada);
-                console.log(response.data);
                 setHorariosState(response.data);
             }
         };
